@@ -1,0 +1,2 @@
+public class nig {
+}
