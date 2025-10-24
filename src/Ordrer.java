@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class Ordrer {
 
@@ -26,8 +28,9 @@ public class Ordrer {
         this.time = time;
     }
 
-    public String getOrdre(){
-        return pizzaer+" "+time;
+    @Override
+    public String toString(){
+        return "Pizzaer: " + pizzaer + ", Afhentningstid: " + time;
     }
 
 }
