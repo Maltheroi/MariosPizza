@@ -28,7 +28,9 @@ public class Main {
         int valg = sc.nextInt();
 
         if  (valg == 1)
-            bestilling.Bestilling();
+            bestilling.bestilling();
+        if  (valg == 0)
+            break;
         }
     }
 }
