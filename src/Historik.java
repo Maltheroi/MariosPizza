@@ -1,6 +1,4 @@
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.List;
 
 
@@ -16,6 +14,7 @@ public class Historik{
                 writer.write(o.toString());
                 writer.newLine();
             }
+
             System.out.println("Historik opdateret med " + ordreListe.size() + " afsluttede ordre(r).");
         } catch (IOException e){
 
@@ -27,12 +26,29 @@ public class Historik{
 
     }
 
-    public void visHistorik() {
+    public static void visHistorik() {
 
-        System.out.println()
+    System.out.println("Historik fra " + FILNAVN + " " );
+
+    try(BufferedReader reader = new BufferedReader(new FileReader(FILNAVN))) {
+
+        String line;
+
+        boolean empty = true;
+        while ((line = reader.readLine()) != null) {
+
+            System.out.println(line);
+            empty = false;
+
+        }
+        if (empty) {
+
+            System.out.println("Ingen afsluttede ordre endnu");
+        }
+}   catch (IOException e){
+        System.out.println("fejl ved læsning af historik" + e.getMessage());
 
     }
 
-
-
+    }
 }

@@ -22,6 +22,7 @@ public class Main {
         System.out.println("===========================");
         System.out.println("1. Tilføj Bestilling");
         System.out.println("2. Opdater Aktive Ordre");
+        System.out.println("3. Vis historik");
         System.out.println("0. Afslut");
         System.out.print("Vælg: ");
 
@@ -29,6 +30,8 @@ public class Main {
 
         if  (valg == 1)
             bestilling.bestilling();
+        if  (valg == 3)
+            Historik.visHistorik(); // ANDRE KIG PÅ DET HER! ER DET IKKE BEDST VI BRUGER EN SWITCH? SKRIV PÅ INSTA
         if  (valg == 0)
             break;
         }
