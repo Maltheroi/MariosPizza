@@ -1,25 +1,32 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Ordrer {
 
-    private String pizzaer;
+    private List<String> pizzaer;
     private int time;
 
-    public Ordrer(String pizzaer, int time) {
-        this.pizzaer = pizzaer;
+    public Ordrer() {}
+
+    public Ordrer(int time) {
+        this.pizzaer = new ArrayList<>();
         this.time = time;
     }
 
-    public String getPizzaer() {
+    // Pizza metoder
+    public void addPizza(String pizza) {
+        pizzaer.add(pizza);
+    }
+
+    public List<String> getPizzaer() {
         return pizzaer;
     }
 
-    public void setPizzaer(String pizzaer) {
+    public void setPizzaer(List<String> pizzaer) {
         this.pizzaer = pizzaer;
     }
 
+    // Tids metoder
     public int getTime() {
         return time;
     }
@@ -28,9 +35,9 @@ public class Ordrer {
         this.time = time;
     }
 
+    // 2 string for print
     @Override
     public String toString(){
         return "Pizzaer: " + pizzaer + ", Afhentningstid: " + time;
     }
-
 }
