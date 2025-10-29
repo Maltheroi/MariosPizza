@@ -46,7 +46,7 @@ public class Bestilling {
 
         do {
             tilføjPizzaTilOrdre();
-            System.out.println("Tilføj flere pizzaer? 1: Ja, 2: Nej");
+            System.out.println("Tilføj flere pizzaer? 1 for Ja, 2 for Nej");
             valg = sc.nextInt();
         } while (valg == 1);
 
