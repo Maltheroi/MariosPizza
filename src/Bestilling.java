@@ -7,7 +7,7 @@ public class Bestilling {
     private Ordrer ordrer;
     Scanner sc = new Scanner(System.in);
 
-    public void printOrdreListe() {
+    public void printOrdreListe() { // En metode til at printe ordre listen HVIS der er en ordre
         if (ordre.isEmpty()) {
             System.out.println("Ingen aktive ordrer.");
             return;
@@ -17,7 +17,7 @@ public class Bestilling {
         }
     }
 
-    public void tilføjPizzaTilOrdre() {
+    public void tilføjPizzaTilOrdre() { // Metode til at tilføje HVIS den er inden for menues nummer
         System.out.println("Pizza menu nr: ");
         List<Menu> pizzaMenu = Menu.laesPizzaFraMenu();
         int menuNr = sc.nextInt();
@@ -30,17 +30,17 @@ public class Bestilling {
         }
     }
 
-    public void tilføjAfhentningTidsPunkt() {
+    public void tilføjAfhentningTidsPunkt() { // Simple metoden til at sætte tiden
         System.out.println("Afhentnings Tidspunkt (fx 1830): ");
         ordrer.setTime(sc.nextInt());
     }
 
-    public void tilføjOrdre() {
+    public void tilføjOrdre() { // Metode til at tilføje en "Ordre" til ordre/aktiveordre liste
         ordre.add(ordrer);
         System.out.println("Ordre gemt: " + ordrer);
     }
 
-    public void bestilling() {
+    public void bestilling() { // Metoden til at køre vores forrige metoder. Det skal forstås som en slags interface
         int valg;
         ordrer = new Ordrer();
 
@@ -54,17 +54,17 @@ public class Bestilling {
         tilføjOrdre();
     }
 
-    public void fjernOrdre() {
-        if (ordre.isEmpty()) {
+    public void fjernOrdre() { // En metode til at fjerne ordre
+        if (ordre.isEmpty()) { // tjekker om der er ordre
             System.out.println("Ingen aktive ordrer at fjerne.");
             return;
         }
 
-        printOrdreListe();
+        printOrdreListe(); // kalder på metoden til at printe ordre liste
         System.out.print("Indtast ordre-ID, der skal fjernes: ");
         int id = sc.nextInt();
 
-        Ordrer fundet = null;
+        Ordrer fundet = null; // Her fra tjekker vi listen i gennem for vores inskrevet nummer og ser om det findes
         for (Ordrer o : ordre) {
             if (o.getId() == id) {
                 fundet = o;
@@ -72,11 +72,11 @@ public class Bestilling {
             }
         }
 
-        if (fundet != null) {
+        if (fundet != null) { // Hvis det findes vil *fundet* ikke være lig med "null" og så vil den kører det her
             ordre.remove(fundet);
             System.out.println("Ordre fjernet: " + fundet);
             Main.historik.tilføjAfsluttetOrdre(fundet);
-        } else {
+        } else { // hvis fundet er lig med "null" kører den der her
             System.out.println("Ingen ordre med det ID.");
         }
     }

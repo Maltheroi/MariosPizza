@@ -3,13 +3,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Historik {
-    private Map<String, Integer> pizzaTælling = new HashMap<>();
-    private final String FILNAVN = "historik.txt";
+    private Map<String, Integer> pizzaTælling = new HashMap<>();  // Husker hvor mange hver pizza bliver nævnt i vores txt og tilføjer dem sammen. FX Margarita 5
+    private final String filNavn = "historik.txt";
 
     public Historik() {
         læsFraFil();
     }
-
+        // Hvis pizzaen ikke findes i listen, den bliver tilføjet med 0 +1. Hvis den findes allerede i listen, den tilføjer +1
     public void tilføjAfsluttetOrdre(Ordrer ordre) {
         for (String pizza : ordre.getPizzaer()) {
             pizzaTælling.put(pizza, pizzaTælling.getOrDefault(pizza, 0) + 1);
@@ -18,16 +18,15 @@ public class Historik {
     }
 
     private void gemTilFil() {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(FILNAVN))) {
-            pizzaTælling.entrySet().stream()
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filNavn))) {
+
+            pizzaTælling.entrySet().stream()    // EntrySet = Hent alle pizza-antal i par. Stream = Det gør det muligt at det ser pænt ud så kan man behandle dataen lettere
                     .sorted((a, b) -> b.getValue() - a.getValue())
                     .forEach(entry -> {
                         try {
                             bw.write(entry.getKey() + " - " + entry.getValue());
                             bw.newLine();
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
+                        } catch (IOException e) {}
                     });
         } catch (IOException e) {
             System.out.println("Fejl ved skrivning til historikfil: " + e.getMessage());
@@ -35,10 +34,10 @@ public class Historik {
     }
 
     private void læsFraFil() {
-        File file = new File(FILNAVN);
+        File file = new File(filNavn);
         if (!file.exists()) return;
 
-        try (BufferedReader br = new BufferedReader(new FileReader(FILNAVN))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(filNavn))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] dele = line.split(" - ");
@@ -54,7 +53,7 @@ public class Historik {
     }
 
     public void printHistorikFraFil() {
-        try (BufferedReader br = new BufferedReader(new FileReader(FILNAVN))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(filNavn))) {
             System.out.println("=== Historik (fra historik.txt) ===");
             String line;
             while ((line = br.readLine()) != null) {

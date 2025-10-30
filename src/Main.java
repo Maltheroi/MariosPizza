@@ -32,7 +32,7 @@ public class Main {
                 case 2 -> bestilling.fjernOrdre();
                 case 3 -> historik.printHistorikFraFil();
                 case 0 -> {
-                    System.out.println("SLUT");
+                    System.out.println("PROGRAM AFSLUTTET");
                     return;
                 }
                 default -> System.out.println("Ugyldigt valg!");
