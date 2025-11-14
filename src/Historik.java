@@ -20,7 +20,7 @@ public class Historik {
     private void gemTilFil() {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filNavn))) {
 
-            pizzaTælling.entrySet().stream()    // EntrySet = Hent alle pizza-antal i par. Stream = Det gør det muligt at det ser pænt ud så kan man behandle dataen lettere
+            pizzaTælling.entrySet().stream()
                     .sorted((a, b) -> b.getValue() - a.getValue())
                     .forEach(entry -> {
                         try {
